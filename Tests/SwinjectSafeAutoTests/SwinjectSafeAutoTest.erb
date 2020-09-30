@@ -1,0 +1,57 @@
+<% puts "// WARNING: This swift file is auto generated. Don't modify this file directly.\n\n" %>
+<% services = 0..30 %>
+import XCTest
+import Swinject
+import SwinjectSafeAuto
+
+final class AutoregisterTest: XCTestCase {
+  private var container: Container!
+
+  override func setUp() {
+    super.setUp()
+    self.container = Container()
+  }
+
+  func testVerifySuccess() {
+<% for i in services %>
+    self.container.autoregister(Dep<%= i %>.self, initializer: Dep<%= i %>.init)
+<% end %>
+    XCTAssertNoThrow(try self.container.verify())
+  }
+
+  func testResolve() {
+<% for i in services %>
+    self.container.autoregister(Dep<%= i %>.self, initializer: Dep<%= i %>.init)
+<% end %>
+<% for i in services %>
+    XCTAssertNotNil(container.resolve(Dep<%= i %>.self))
+<% end %>
+  }
+
+  func testVerifyFail_WhenRequiredServiceIsNotRegistered() {
+    // do not register Dep0
+<% for i in 1..services.max %>
+    self.container.autoregister(Dep<%= i %>.self, initializer: Dep<%= i %>.init)
+<% end %>
+    XCTAssertThrowsError(try self.container.verify())
+  }
+
+  func testVerifyFailWhenThereIsNoRequiredService() {
+    XCTAssertThrowsError(try self.container.verify())
+  }
+}
+<% for i in services %>
+
+private final class Dep<%= i%> {
+  init(
+<% for j in 0...(i - 1) %>
+    dep<%= j %>: Dep<%= j %>,
+<% end %>
+<% if i > 0 %>
+    dep<%= (i - 1) %>: Dep<%= (i - 1) %>
+
+<% end %>
+  ) {
+  }
+}
+<% end %>

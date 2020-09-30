@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Swinject",
+        "repositoryURL": "https://github.com/Swinject/Swinject",
+        "state": {
+          "branch": null,
+          "revision": "8a76d2c74bafbb455763487cc6a08e91bad1f78b",
+          "version": "2.7.1"
+        }
+      },
+      {
+        "package": "WeakMapTable",
+        "repositoryURL": "https://github.com/ReactorKit/WeakMapTable",
+        "state": {
+          "branch": null,
+          "revision": "eda6ba374666bb2177034b6418025103cc72bcbf",
+          "version": "1.1.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
