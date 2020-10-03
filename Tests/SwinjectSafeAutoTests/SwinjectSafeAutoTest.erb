@@ -19,15 +19,6 @@ final class AutoregisterTest: XCTestCase {
     XCTAssertNoThrow(try self.container.verify())
   }
 
-  func testResolve() {
-<% for i in services %>
-    self.container.autoregister(Dep<%= i %>.self, initializer: Dep<%= i %>.init)
-<% end %>
-<% for i in services %>
-    XCTAssertNotNil(container.resolve(Dep<%= i %>.self))
-<% end %>
-  }
-
   func testVerifyFail_WhenRequiredServiceIsNotRegistered() {
     // do not register Dep0
 <% for i in 1..services.max %>
@@ -38,6 +29,15 @@ final class AutoregisterTest: XCTestCase {
 
   func testVerifyFailWhenThereIsNoRequiredService() {
     XCTAssertThrowsError(try self.container.verify())
+  }
+
+  func testResolve() {
+<% for i in services %>
+    self.container.autoregister(Dep<%= i %>.self, initializer: Dep<%= i %>.init)
+<% end %>
+<% for i in services %>
+    XCTAssertNotNil(container.resolve(Dep<%= i %>.self))
+<% end %>
   }
 }
 <% for i in services %>

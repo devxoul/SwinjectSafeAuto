@@ -47,6 +47,45 @@ final class AutoregisterTest: XCTestCase {
     XCTAssertNoThrow(try self.container.verify())
   }
 
+  func testVerifyFail_WhenRequiredServiceIsNotRegistered() {
+    // do not register Dep0
+    self.container.autoregister(Dep1.self, initializer: Dep1.init)
+    self.container.autoregister(Dep2.self, initializer: Dep2.init)
+    self.container.autoregister(Dep3.self, initializer: Dep3.init)
+    self.container.autoregister(Dep4.self, initializer: Dep4.init)
+    self.container.autoregister(Dep5.self, initializer: Dep5.init)
+    self.container.autoregister(Dep6.self, initializer: Dep6.init)
+    self.container.autoregister(Dep7.self, initializer: Dep7.init)
+    self.container.autoregister(Dep8.self, initializer: Dep8.init)
+    self.container.autoregister(Dep9.self, initializer: Dep9.init)
+    self.container.autoregister(Dep10.self, initializer: Dep10.init)
+    self.container.autoregister(Dep11.self, initializer: Dep11.init)
+    self.container.autoregister(Dep12.self, initializer: Dep12.init)
+    self.container.autoregister(Dep13.self, initializer: Dep13.init)
+    self.container.autoregister(Dep14.self, initializer: Dep14.init)
+    self.container.autoregister(Dep15.self, initializer: Dep15.init)
+    self.container.autoregister(Dep16.self, initializer: Dep16.init)
+    self.container.autoregister(Dep17.self, initializer: Dep17.init)
+    self.container.autoregister(Dep18.self, initializer: Dep18.init)
+    self.container.autoregister(Dep19.self, initializer: Dep19.init)
+    self.container.autoregister(Dep20.self, initializer: Dep20.init)
+    self.container.autoregister(Dep21.self, initializer: Dep21.init)
+    self.container.autoregister(Dep22.self, initializer: Dep22.init)
+    self.container.autoregister(Dep23.self, initializer: Dep23.init)
+    self.container.autoregister(Dep24.self, initializer: Dep24.init)
+    self.container.autoregister(Dep25.self, initializer: Dep25.init)
+    self.container.autoregister(Dep26.self, initializer: Dep26.init)
+    self.container.autoregister(Dep27.self, initializer: Dep27.init)
+    self.container.autoregister(Dep28.self, initializer: Dep28.init)
+    self.container.autoregister(Dep29.self, initializer: Dep29.init)
+    self.container.autoregister(Dep30.self, initializer: Dep30.init)
+    XCTAssertThrowsError(try self.container.verify())
+  }
+
+  func testVerifyFailWhenThereIsNoRequiredService() {
+    XCTAssertThrowsError(try self.container.verify())
+  }
+
   func testResolve() {
     self.container.autoregister(Dep0.self, initializer: Dep0.init)
     self.container.autoregister(Dep1.self, initializer: Dep1.init)
@@ -110,45 +149,6 @@ final class AutoregisterTest: XCTestCase {
     XCTAssertNotNil(container.resolve(Dep28.self))
     XCTAssertNotNil(container.resolve(Dep29.self))
     XCTAssertNotNil(container.resolve(Dep30.self))
-  }
-
-  func testVerifyFail_WhenRequiredServiceIsNotRegistered() {
-    // do not register Dep0
-    self.container.autoregister(Dep1.self, initializer: Dep1.init)
-    self.container.autoregister(Dep2.self, initializer: Dep2.init)
-    self.container.autoregister(Dep3.self, initializer: Dep3.init)
-    self.container.autoregister(Dep4.self, initializer: Dep4.init)
-    self.container.autoregister(Dep5.self, initializer: Dep5.init)
-    self.container.autoregister(Dep6.self, initializer: Dep6.init)
-    self.container.autoregister(Dep7.self, initializer: Dep7.init)
-    self.container.autoregister(Dep8.self, initializer: Dep8.init)
-    self.container.autoregister(Dep9.self, initializer: Dep9.init)
-    self.container.autoregister(Dep10.self, initializer: Dep10.init)
-    self.container.autoregister(Dep11.self, initializer: Dep11.init)
-    self.container.autoregister(Dep12.self, initializer: Dep12.init)
-    self.container.autoregister(Dep13.self, initializer: Dep13.init)
-    self.container.autoregister(Dep14.self, initializer: Dep14.init)
-    self.container.autoregister(Dep15.self, initializer: Dep15.init)
-    self.container.autoregister(Dep16.self, initializer: Dep16.init)
-    self.container.autoregister(Dep17.self, initializer: Dep17.init)
-    self.container.autoregister(Dep18.self, initializer: Dep18.init)
-    self.container.autoregister(Dep19.self, initializer: Dep19.init)
-    self.container.autoregister(Dep20.self, initializer: Dep20.init)
-    self.container.autoregister(Dep21.self, initializer: Dep21.init)
-    self.container.autoregister(Dep22.self, initializer: Dep22.init)
-    self.container.autoregister(Dep23.self, initializer: Dep23.init)
-    self.container.autoregister(Dep24.self, initializer: Dep24.init)
-    self.container.autoregister(Dep25.self, initializer: Dep25.init)
-    self.container.autoregister(Dep26.self, initializer: Dep26.init)
-    self.container.autoregister(Dep27.self, initializer: Dep27.init)
-    self.container.autoregister(Dep28.self, initializer: Dep28.init)
-    self.container.autoregister(Dep29.self, initializer: Dep29.init)
-    self.container.autoregister(Dep30.self, initializer: Dep30.init)
-    XCTAssertThrowsError(try self.container.verify())
-  }
-
-  func testVerifyFailWhenThereIsNoRequiredService() {
-    XCTAssertThrowsError(try self.container.verify())
   }
 }
 
