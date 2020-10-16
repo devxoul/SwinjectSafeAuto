@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "SwinjectSafeAuto"
-  s.version          = "1.0.0"
+  s.version          = "1.0.1"
   s.summary          = "SwinjectSafeAuto allows to auto-register services to the container and verify the required services are properly registered."
   s.homepage         = "https://github.com/devxoul/SwinjectSafeAuto"
   s.license          = { :type => "MIT", :file => "LICENSE" }
