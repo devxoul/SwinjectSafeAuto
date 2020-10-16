@@ -22,9 +22,10 @@ extension Container {
     self.requiredServices.append(Dep<%= j %>.self)
 <% end %>
     #endif
-    return self.register(service, name: name, factory: { r in
+    let resolver = self.synchronize()
+    return self.register(service, name: name, factory: { _ in
 <% for j in 1..i %>
-      let dep<%= j %>: Dep<%= j %>? = r.resolve(Dep<%= j %>.self)
+      let dep<%= j %>: Dep<%= j %>? = resolver.resolve(Dep<%= j %>.self)
 <% end %>
 <% services = (1..i).map { |j| "dep#{j}!" }.join(", ") %>
       return initializer((<%= services %>))
